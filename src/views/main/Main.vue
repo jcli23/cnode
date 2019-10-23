@@ -124,7 +124,7 @@
       },
       go(path){
         this.$router.push({name:"details",query:{id:path.id}})
-      }
+      },
     },
     mounted() {
       this.gettopics()  //调用获取数据的函数
@@ -134,7 +134,6 @@
       });
     },
     created() {
-
     },
     filters: {},
     computed: {},
@@ -150,6 +149,7 @@
     margin-top: 15px;
     background: white;
     margin-bottom: 15px;
+    position: relative;
     .header{
       height: 40px;
       width: 100%;
