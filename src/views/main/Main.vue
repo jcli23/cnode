@@ -22,7 +22,7 @@
         <span v-else-if="item.tab ==='share'" class="share-ask">分享</span>
         <span v-if="item.tab ==='ask'" class="share-ask">问答</span>
       </div>
-      <div style="color: #333;font-size: 16px" class="title-text" @click="go('details')">{{item.title}}</div>  <!--主标题内容-->
+      <div style="color: #333;font-size: 16px" class="title-text" @click="go(item)">{{item.title}}</div>  <!--主标题内容-->
       <div class="right">
         <div v-if="item.day">{{item.day}}天前</div>
         <div v-else-if="item.min">{{item.min}}分钟前</div>
@@ -43,12 +43,14 @@
 </template>
 
 <script>
+  import { Loading } from 'element-ui';
   export default {
     name: "main",
     components: {},
     props: {},
     data() {
       return {
+        loadingInstance:'',
         topics:[],
         currentPage:1,
         pages:40,
@@ -91,6 +93,7 @@
         this.$axios.req('api/topics').then(res => {
           console.log(res)
           this.topics= res.data   //拿到数据
+          this.loadingInstance.close();
           let nowTime=Date.now();   //获得现在的时间戳
           this.topics.map(item=>{
             let different=nowTime-this.$dayjs(item.last_reply_at).valueOf();   //计算出时间戳的差值
@@ -120,11 +123,15 @@
         this.pagesNum=val
       },
       go(path){
-        this.$router.push(path)
+        this.$router.push({name:"details",query:{id:path.id}})
       }
     },
     mounted() {
       this.gettopics()  //调用获取数据的函数
+      this.loadingInstance = Loading.service({text:'加载中...'});
+      this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+        this.gettopics ()
+      });
     },
     created() {
 

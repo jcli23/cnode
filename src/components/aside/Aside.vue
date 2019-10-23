@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="inner">
+    <div class="inner" v-if="!user">
       <div class="website">CNode：Node.js专业中文社区</div>
       <div class="inner-text">
         <div class="text-one">
-          <div>你可以</div>
+          <div>你可以</div>                            <!--登录注册与会员状态栏-->
           <div class="algin">登录</div>
           <div>或</div>
           <div class="register">注册</div>
@@ -15,12 +15,17 @@
         </div>
       </div>
     </div>
+    <div v-if="user" class="inner">
+      <div class="website">欢迎“{{user}}”来到cnode社区</div>
+      <div class="jifen">积分：5</div>                              <!--如果登录，转为会员信息栏-->
+      <div class="qianming">"这家伙很懒，什么个性签名都没有留下。"</div>
+    </div>
     <div class="inner-ads">
       <div>
         <img src="../../../public/images/img1.png" alt="" class="img">
       </div>
       <div>
-        <img src="../../../public/images/img2.png" alt="" class="img">
+        <img src="../../../public/images/img2.png" alt="" class="img">    <!--图片logo栏-->
       </div>
       <div>
         <img src="../../../public/images/img3.png" alt="" class="img1">
@@ -30,7 +35,7 @@
       <div class="header">
         <div class="header-text">无人回复的话题</div>
       </div>
-      <div class="inner2">
+      <div class="inner2">                                              <!--话题栏-->
         <div class="inner-text2">如何学习js</div>
         <div class="inner-text2">发现一个用node.js做的后台权限管理框架</div>
         <div class="inner-text2">请问有谁了解 VuePress JAMStack Headless cms 么</div>
@@ -39,7 +44,7 @@
       </div>
     </div>
     <div class="pane2">
-      <div class="pane2-title">友情社区</div>
+      <div class="pane2-title">友情社区</div>                         <!--友情社区与logo-->
       <div>
         <img src="../../../public/images/img4.png" alt="" class="pane2-img1">
       </div>
@@ -80,7 +85,11 @@
 
     },
     filters: {},
-    computed: {},
+    computed: {
+      user(){
+        return this.$store.state.user;
+      }
+    },
     watch: {},
     directives: {}
   }
@@ -93,6 +102,16 @@
     background: #FFF;
     margin-top: 15px;
     margin-left: 10px;
+    .jifen{
+      color: chocolate;
+      font-size: 15px;
+      margin-left: 10px;
+    }
+    .qianming{
+      font-size: 14px;
+      margin-left: 10px;
+      margin-top: 10px;
+    }
     .website{
       width: 270px;
       height: 26px;

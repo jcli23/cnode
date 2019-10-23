@@ -29,17 +29,10 @@ export default {
     }
   },
   methods: {
-    gettopics () {
-      this.$axios.req('api/topics').then(res => {
-        console.log(res)
-        this.topics= res.data
-      }).catch(err => {
-        console.log(err)    //获取数据
-      })
-    }
+
   },
   mounted() {
-    this.gettopics()    //调用数据函数
+
   }
 
 }

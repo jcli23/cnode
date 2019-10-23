@@ -17,7 +17,7 @@
             <div class="right-three">API</div>
             <div class="right-four">关于</div>
             <div class="right-five">注册</div>
-            <div class="right-six"><a href="../../views/Sigin.vue">登录</a></div>
+            <div class="right-six"><a href="/Sigin">登录</a></div>
           </div>
         </div>
       </div>

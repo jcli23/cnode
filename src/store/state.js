@@ -2,5 +2,5 @@
 export default {
   num: 100,
   movies: [],
-  user: {}
+  user:""
 }
